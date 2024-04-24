@@ -1,0 +1,11 @@
+D:\c#\BookStoreProjeect\ModelLayer\bin\Debug\net8.0\ModelLayer.deps.json
+D:\c#\BookStoreProjeect\ModelLayer\bin\Debug\net8.0\ModelLayer.dll
+D:\c#\BookStoreProjeect\ModelLayer\bin\Debug\net8.0\ModelLayer.pdb
+D:\c#\BookStoreProjeect\ModelLayer\obj\Debug\net8.0\ModelLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:\c#\BookStoreProjeect\ModelLayer\obj\Debug\net8.0\ModelLayer.AssemblyInfoInputs.cache
+D:\c#\BookStoreProjeect\ModelLayer\obj\Debug\net8.0\ModelLayer.AssemblyInfo.cs
+D:\c#\BookStoreProjeect\ModelLayer\obj\Debug\net8.0\ModelLayer.csproj.CoreCompileInputs.cache
+D:\c#\BookStoreProjeect\ModelLayer\obj\Debug\net8.0\ModelLayer.dll
+D:\c#\BookStoreProjeect\ModelLayer\obj\Debug\net8.0\refint\ModelLayer.dll
+D:\c#\BookStoreProjeect\ModelLayer\obj\Debug\net8.0\ModelLayer.pdb
+D:\c#\BookStoreProjeect\ModelLayer\obj\Debug\net8.0\ref\ModelLayer.dll
