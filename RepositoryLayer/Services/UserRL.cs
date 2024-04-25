@@ -5,6 +5,7 @@ using RepositoryLayer.Database;
 using RepositoryLayer.Interfaces;
 using RepositoryLayer.JWT;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.AccessControl;
@@ -17,11 +18,13 @@ namespace RepositoryLayer.Services
     {
         private readonly DBContext _dbContext;
         private readonly IConfiguration _configuration;
+        private readonly ICacheServiceRL _cacheServiceRL;
 
-        public UserRL(DBContext dbContext,IConfiguration configuration)
+        public UserRL(DBContext dbContext,IConfiguration configuration, ICacheServiceRL cacheService)
         {
             _dbContext = dbContext;
             _configuration = configuration;
+            _cacheServiceRL = cacheService;
         }
 
         public async Task<bool> UserRegister(UserRegisteration UserCredentials)
@@ -32,6 +35,15 @@ namespace RepositoryLayer.Services
 
                 //DynamicParameters parameters = new DynamicParameters();
                 //parameters.Add("")
+
+                // Check if the email already exists in the database
+                int checkmail = await connect.QueryFirstOrDefaultAsync<int>(
+                    "select COUNT(*) from Customer where Email=@Email", new { Email = UserCredentials.Email });
+
+                if (checkmail > 0)
+                {
+                    throw new Exception("Email Already Exists");
+                }
                 var res = await connect.ExecuteAsync(query,
                     new {
                         Name=UserCredentials.Name, 
@@ -70,6 +82,66 @@ namespace RepositoryLayer.Services
                 }
             }
             return null;
+        }
+
+        public async Task<string> ForgotPassword(string Email)
+        {
+            var otp = "" ;
+            var query = "select Phone from Customer where Email=@Email";
+
+            using(var connect=_dbContext.CreateConnection())
+            {   var Value= await connect.QueryFirstOrDefaultAsync(query,new {Email = Email});
+                var CacheKey = $"User_{Value.Phone}";
+                int checkmail = await connect.QueryFirstOrDefaultAsync<int>(
+                    "select COUNT(*) from Customer where Email=@Email", new { Email = Email });
+
+                if (checkmail == 0)
+                {
+                    throw new Exception("User Doesn't Exists");
+                }
+
+                otp = new Random().Next(100000, 999999).ToString();
+                _cacheServiceRL.SetData(CacheKey, otp, DateTimeOffset.Now.AddMinutes(5));
+                return otp;
+            }
+
+        }
+
+        public async Task<bool> ResetPassword(PasswordResetModel Validations)
+        {
+            var checkEmail = 0;
+            var query = "select Phone from Customer where Email=@Email";
+            var UpdatePassQuery= "update Customer set password=@password where email=@email";
+            using (var connect = _dbContext.CreateConnection())
+            {
+                //Get CacheKey from Redis Cache
+                var Value = await connect.QueryFirstOrDefaultAsync(query, new { Email = Validations.Email });
+                var CacheKey = $"User_{Value.Phone}";
+
+                //Check if the Entered Email is present in the DB
+                checkEmail = await connect.QueryFirstOrDefaultAsync<int>(
+                    "select COUNT(*) from Customer where Email=@Email", new { Email = Validations.Email });
+                if(checkEmail == 0)
+                {
+                    throw new Exception("User Doesn't Exists");
+                }
+
+                //Check if OTP is valid
+                var cachedOtp = _cacheServiceRL.GetData<string>(CacheKey);
+                if(cachedOtp == null || cachedOtp!=Validations.OTP)
+                {
+                    throw new Exception("Invalid or Expired OTP!");
+                }
+
+                //Reset Password
+                var res = await connect.ExecuteAsync(UpdatePassQuery, new { password = BCrypt.Net.BCrypt.HashPassword(Validations.NewPassword), email = Validations.Email });
+                if (res == 0)
+                {
+                    return false;
+                }
+                _cacheServiceRL.RemoveData(CacheKey); //Removes the key once the otp is validated and used 
+                return true;
+            }
         }
     }
 }

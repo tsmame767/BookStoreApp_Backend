@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "A4gjd1YzBJyzhNasvXtU5LAI3QiuKscFVrce59dhALFOfzXDJLrgLfLulqm5MQ6jcC2JWf5y+SizEaIwJjdyHQ==",
+  "dgSpecHash": "Bsa94raY/9zlJnikW0Bp7KBmanXE5SkUb5NiDKXEsk+CwYZncHapAJ+AvDbqV67htYvywH/xsk9yJttFoKrNuQ==",
   "success": true,
   "projectFilePath": "D:\\c#\\BookStoreProjeect\\ModelLayer\\ModelLayer.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.8\\pipelines.sockets.unofficial.2.2.8.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\stackexchange.redis\\2.7.33\\stackexchange.redis.2.7.33.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\system.io.pipelines\\5.0.1\\system.io.pipelines.5.0.1.nupkg.sha512"
+  ],
   "logs": []
 }

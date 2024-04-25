@@ -9,3 +9,4 @@ D:\c#\BookStoreProjeect\ModelLayer\obj\Debug\net8.0\ModelLayer.dll
 D:\c#\BookStoreProjeect\ModelLayer\obj\Debug\net8.0\refint\ModelLayer.dll
 D:\c#\BookStoreProjeect\ModelLayer\obj\Debug\net8.0\ModelLayer.pdb
 D:\c#\BookStoreProjeect\ModelLayer\obj\Debug\net8.0\ref\ModelLayer.dll
+D:\c#\BookStoreProjeect\ModelLayer\obj\Debug\net8.0\ModelLayer.csproj.AssemblyReference.cache

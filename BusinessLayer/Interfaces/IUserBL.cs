@@ -12,5 +12,7 @@ namespace BusinessLayer.Interfaces
     {
         Task<bool> UserRegister(UserRegisteration UserCredentials);
         Task<string> UserLogin(UserLoginModel UserCredentials);
+        Task<string> ForgotPassword(string Email);
+        Task<bool> ResetPassword(PasswordResetModel Validations);
     }
 }
