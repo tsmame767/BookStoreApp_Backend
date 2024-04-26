@@ -46,8 +46,11 @@ namespace BookStoreApp.Controllers
                 var res = await _userService.UserLogin(Credentials);
                 if (res != null) 
                 {
-                    return Ok("User Login SuccessFull\nToken: "+res);
-                }
+                    //return Ok("User Login SuccessFull\nToken: "+res);
+                    return Ok(new {Success = true,
+                                   Message = "User Login SuccessFull",
+                                    Data = res});
+                    }
                 return Ok("User Does Not Exist!");
             }
             catch(Exception ex)

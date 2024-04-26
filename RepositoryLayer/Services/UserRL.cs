@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using ModelLayer.DTO;
 using RepositoryLayer.Database;
+using RepositoryLayer.Entity;
 using RepositoryLayer.Interfaces;
 using RepositoryLayer.JWT;
 using System;
@@ -33,8 +34,7 @@ namespace RepositoryLayer.Services
             {
                 string query = "Insert into Customer(Name,Email,Phone,Password,Role) values(@Name,@Email,@Phone,@Password,@Role)";
 
-                //DynamicParameters parameters = new DynamicParameters();
-                //parameters.Add("")
+                string query2 = "Insert into ShoppingCart(Customer_Id) values(@userId)";
 
                 // Check if the email already exists in the database
                 int checkmail = await connect.QueryFirstOrDefaultAsync<int>(
@@ -55,6 +55,12 @@ namespace RepositoryLayer.Services
 
                 if (res > 0)
                 {
+                    //take currently added customer id
+                    if (UserCredentials.Role == "customer")
+                    {
+                        var CurrentBookData = await connect.QueryFirstOrDefaultAsync<int>("select Top 1 customer_id from customer order by customer_id desc");
+                        int CreateUserCart = await connect.ExecuteAsync(query2, new { userId = CurrentBookData });
+                    }
                     return true;
                 }
             }
