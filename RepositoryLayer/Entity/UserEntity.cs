@@ -8,10 +8,11 @@ namespace RepositoryLayer.Entity
 {
     public class UserEntity
     {
-        public int Customer_Id { get; set; }    // Primary Key
+        public int User_Id { get; set; }    // Primary Key
         public string Name { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+        public string City { get; set; }
         public string Password { get; set; }
         public string Role { get; set; }
     }

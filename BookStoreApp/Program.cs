@@ -53,6 +53,10 @@ builder.Services.AddScoped<ICacheServiceBL, CacheServiceBL>();
 builder.Services.AddScoped<ICacheServiceRL, CacheServiceRL>();
 builder.Services.AddScoped<IBookBL, BookBL>();
 builder.Services.AddScoped<IBookRL, BookRL>();
+builder.Services.AddScoped<ICartBL, CartBL>();
+builder.Services.AddScoped<ICartRL, CartRL>();
+builder.Services.AddScoped<IOrderBL, OrderBL>();
+builder.Services.AddScoped<IOrderRL, OrderRL>();
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

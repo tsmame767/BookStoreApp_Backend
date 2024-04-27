@@ -22,7 +22,7 @@ namespace RepositoryLayer.Services
 
         public async Task<BookEntity> AddBook(BookModel NewBook)
         {
-            var query = "insert into Book (Title, Author, Genre, Price, Image_Url) values (@Title, @Author, @Genre, @Price, @Image_Url)";
+            var query = "insert into Book (Title, Author, Genre, Description, Price, Quantity, Image_Url) values (@Title, @Author, @Genre, @Description, @Price, @Quantity, @Image_Url)";
             using(var connect = _dBContext.CreateConnection())
             {
                 var AddResult = await connect.ExecuteAsync(query,
@@ -32,6 +32,8 @@ namespace RepositoryLayer.Services
                         Author = NewBook.Author,
                         Genre = NewBook.Genre,
                         Price = NewBook.Price,
+                        Quantity = NewBook.Quantity,
+                        Description = NewBook.Description,
                         Image_Url = NewBook.Image_Url
                     });
                 if(AddResult == 0)
@@ -81,7 +83,7 @@ namespace RepositoryLayer.Services
         public async Task<bool> UpdateBookDetails(int Book_Id, BookModel Model)
         {
             var UpdateBook = 0;
-            var query = "update book set Title=@Title, Author=@Author, Genre=@Genre, Price=@Price, Image_Url=@Image_Url where book_id=@BookId";
+            var query = "update book set Title=@Title, Author=@Author, Genre=@Genre, Description = @Description, Price=@Price, Quantity = @Quantity, Image_Url=@Image_Url where book_id=@BookId";
 
             using (var connect = _dBContext.CreateConnection())
             {
@@ -92,6 +94,8 @@ namespace RepositoryLayer.Services
                     Author = Model.Author,
                     Genre = Model.Genre,
                     Price = Model.Price,
+                    Description = Model.Description,
+                    Quantity = Model.Quantity,
                     Image_Url = Model.Image_Url
                 });
 

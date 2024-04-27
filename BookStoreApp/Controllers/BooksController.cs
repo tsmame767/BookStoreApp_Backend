@@ -34,7 +34,12 @@ namespace BookStoreApp.Controllers
                 {
                     return Ok(new ResponseModel<BookEntity> { Status = 200, Message = "No Books Available!" });
                 }
-                return Ok(res);
+                return Ok(new
+                {
+                    Status = true,
+                    Message = "List of All Books",
+                    Data = res
+                });
             }
             catch (Exception ex)
             {
@@ -111,6 +116,7 @@ namespace BookStoreApp.Controllers
             }
             catch(Exception ex)
             {
+
                 return BadRequest(ex.Message);
             }
         }

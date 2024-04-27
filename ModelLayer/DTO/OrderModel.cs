@@ -19,4 +19,16 @@ namespace ModelLayer.DTO
         public int Book_Id { get; set; }
         public int Quantity { get; set; }
     }
+
+    public class OrderSummary
+    {
+        public int Order_Id { get; set; } //OrderItemModel
+        public int Book_Id { get; set; } //OrderItemModel
+        public int Quantity { get; set; } //OrderItemModel
+
+        public string Title {  get; set; } //Book
+        public string Author { get; set; } //Book
+        public string Image_url {  get; set; } //Book
+        public string Amount { get; set; } //Book | //CartItem
+    }
 }

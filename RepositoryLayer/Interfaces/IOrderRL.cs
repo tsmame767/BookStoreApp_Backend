@@ -8,5 +8,6 @@ namespace RepositoryLayer.Interfaces
 {
     public interface IOrderRL
     {
+        Task<bool> PlaceOrder(int userId, string address);
     }
 }

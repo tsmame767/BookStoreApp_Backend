@@ -1,4 +1,7 @@
-﻿using RepositoryLayer.Database;
+﻿using Dapper;
+using RepositoryLayer.Database;
+using RepositoryLayer.Entity;
+using RepositoryLayer.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RepositoryLayer.Services
 {
-    public class OrderRL
+    public class OrderRL:IOrderRL
     {
         private readonly DBContext _dBContext;
 
@@ -16,9 +19,6 @@ namespace RepositoryLayer.Services
             _dBContext = dbContext;
         }
 
-        public async Task<bool> PlaceOrder()
-        {
-            return false;
-        }
+       
     }
 }

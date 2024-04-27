@@ -94,7 +94,7 @@ namespace BookStoreApp.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+        
         [HttpPost("Reset-Password")]
         public async Task<IActionResult> ResetPassword(PasswordResetModel Validation)
         {

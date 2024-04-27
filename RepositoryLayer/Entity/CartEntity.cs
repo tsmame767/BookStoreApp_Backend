@@ -18,5 +18,6 @@ namespace RepositoryLayer.Entity
         public int Cart_Id { get; set; }
         public int Book_Id { get; set; }
         public int Quantity { get; set; }
+        public int Price { get; set; }
     }
 }

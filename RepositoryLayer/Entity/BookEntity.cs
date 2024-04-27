@@ -13,6 +13,8 @@ namespace RepositoryLayer.Entity
         public string Author { get; set; }
         public string Genre { get; set; }
         public int Price { get; set; }
+        public string Description { get; set; }
+        public int quantity { get; set; }
         public string Image_Url { get; set; }
 
     }
